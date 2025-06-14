@@ -4,17 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>club_intro : 동아리 페이지</title>
+
+  <!-- 외부 스타일시트 불러오기 -->
   <link rel="stylesheet" href="../assets/css/style.css" />
+  <!-- Pretendard 폰트 불러오기 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+
+  <!-- 페이지 내 추가 스타일 정의 -->
   <style>
+    /* 전체 내용 레이아웃 (좌측 사이드바 + 우측 테이블) */
     .content-wrapper {
       display: flex;
       padding: 2rem;
     }
+
+    /* 사이드바 */
     .sidebar {
       width: 220px;
       padding-right: 1rem;
     }
+
     .sidebar-header {
       font-weight: bold;
       font-size: 1rem;
@@ -22,6 +31,8 @@
       border-top: 3px solid #1d1d3f;
       margin-bottom: 0.5rem;
     }
+
+    /* 학부(분과) 리스트 */
     .department-list {
       list-style: none;
       padding: 0;
@@ -30,6 +41,8 @@
       border-bottom: 2px solid #1d1d3f;
       padding-top: 0.5rem;
     }
+
+    /* 학부명 토글 */
     .dept-toggle span {
       position: relative;
       display: inline-block;
@@ -37,29 +50,36 @@
       padding: 0.5rem 0;
       font-weight: bold;
     }
+
     .dept-toggle span::after {
-      content: "\25B6";
+      content: "\25B6"; /* ▶ 아이콘 */
       font-size: 0.8rem;
-      display: inline-block;
-      transform: rotate(0deg);
-      transition: transform 0.3s ease;
       margin-left: 0.5rem;
+      transition: transform 0.3s ease;
     }
+
+    /* 펼쳐졌을 때 아이콘 회전 */
     .dept-toggle.open span::after {
       transform: rotate(90deg);
     }
+
+    /* 동아리 리스트 (기본 숨김) */
     .club-list {
       display: none;
       padding-left: 1rem;
     }
+
     .club-list.active {
       display: block;
     }
+
     .club-list li {
       cursor: pointer;
       padding: 0.3rem 0;
       font-size: 0.9rem;
     }
+
+    /* 글 작성 버튼 */
     .write-btn {
       margin-top: 2rem;
       padding: 0.6rem;
@@ -69,33 +89,39 @@
       cursor: pointer;
       width: 100%;
     }
+
+    /* 게시글 테이블 */
     .post-table {
       flex: 1;
       padding-left: 2rem;
     }
+
     .post-table table {
       width: 100%;
       border-collapse: collapse;
       border-top: 3px solid #1d1d3f;
     }
+
     .post-table th, .post-table td {
       padding: 0.8rem;
       border-bottom: 1px solid #ddd;
       text-align: left;
     }
+
     a {
       text-decoration: none;
       color: inherit;
     }
+
     a:visited {
       color: inherit;
     }
   </style>
 </head>
 <body>
-<!-- HanClub 헤더 -->
+  
+<!-- ========== 공통 헤더 ========== -->
 <header class="main-header">
-    <!-- 상단: 검색창, 로고, 로그인 -->
   <div class="header-top container">
     <!-- 검색창 -->
     <div class="search-box">
@@ -108,7 +134,7 @@
       <img src="../assets/images/hanclub.svg" alt="HanClub Logo" />
     </div>
 
-    <!-- 로그인 버튼 -->
+    <!-- 로그인 or 마이페이지 링크 -->
     <a href="login.html" class="login-link" id="loginLink">LOGIN</a>
   </div>
 
@@ -118,16 +144,21 @@
     <a href="club_intro.html">Clubs</a>
     <a href="guide.html">About</a>
   </nav>
-  
 </header>
 
+<!-- ========== 메인 콘텐츠 ========== -->
 <main class="main-content">
   <div class="content-wrapper">
+    <!--  왼쪽 사이드바 -->
     <aside class="sidebar">
       <div class="sidebar-header">전체 게시글</div>
+      <!-- 학부/동아리 목록 -->
       <ul id="departmentList" class="department-list"></ul>
+      <!-- 글쓰기 버튼 (로그인 시 표시됨) -->
       <button class="write-btn" id="writeBtn" style="display: none;">글 작성</button>
     </aside>
+
+    <!--  오른쪽 게시글 테이블 -->
     <section class="post-table">
       <table>
         <thead>
@@ -144,10 +175,12 @@
   </div>
 </main>
 
+<!-- ========== 푸터 ========== -->
 <footer class="footer">
   <p>© 2025 HanClub. All rights reserved.</p>
 </footer>
 
+<!-- ========== 스크립트 영역 ========== -->
 <script src="../assets/js/data.js"></script>
 <script>
   const departmentList = document.getElementById("departmentList");
@@ -155,36 +188,46 @@
   const writeBtn = document.getElementById("writeBtn");
   const loginLink = document.getElementById("loginLink");
 
+  // 로그인한 사용자 정보 불러오기
   const loginUser = JSON.parse(localStorage.getItem("loginUser"));
+
   if (loginUser) {
-    writeBtn.style.display = "block";
+    writeBtn.style.display = "block"; // 로그인하면 글쓰기 버튼 표시
     loginLink.href = "mypage.html";
     loginLink.textContent = "MYPAGE";
   }
 
+  // 동아리 목록 출력
   for (const dep in departments) {
     const li = document.createElement("li");
     li.className = "dept-toggle";
     li.innerHTML = `<span>${dep}</span><ul class="club-list"></ul>`;
+
     const clubUl = li.querySelector(".club-list");
     departments[dep].forEach(club => {
       const clubLi = document.createElement("li");
       clubLi.textContent = club;
-      clubLi.onclick = () => filterPostsByClub(club);
+      clubLi.onclick = () => filterPostsByClub(club); // 클릭 시 필터링
       clubUl.appendChild(clubLi);
     });
+
+    // 분과 제목 클릭하면 토글
     li.querySelector("span").onclick = () => {
       clubUl.classList.toggle("active");
       li.classList.toggle("open");
     };
+
     departmentList.appendChild(li);
   }
 
+  // 게시글 렌더링 함수
   function renderPosts(postArray) {
     postList.innerHTML = "";
+
     postArray.forEach(post => {
       const isLocked = post.type === "post";
       const lockIcon = isLocked ? "🔒 " : "";
+
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td>${post.club}</td>
@@ -195,6 +238,7 @@
       postList.appendChild(tr);
     });
 
+    // 게시글 클릭 이벤트
     document.querySelectorAll(".post-link").forEach(link => {
       link.addEventListener("click", (e) => {
         e.preventDefault();
@@ -202,20 +246,24 @@
         const selected = posts.find(p => p.title === title);
         if (!selected) return;
 
+        // 공지글은 모두 열람 가능
         if (selected.type === "notice") {
           localStorage.setItem("selectedPost", JSON.stringify(selected));
           location.href = "chat_view.html";
         } else {
+          // 일반 글은 로그인 상태 + 소속 동아리 검사
           const user = JSON.parse(localStorage.getItem("loginUser"));
           if (!user) {
             alert("로그인 후 확인 가능한 게시글입니다.");
             return;
           }
+
           const hasAccess = user.clubs.includes(selected.club);
           if (!hasAccess) {
             alert("해당 동아리 소속만 열람 가능한 게시글입니다.");
             return;
           }
+
           localStorage.setItem("selectedPost", JSON.stringify(selected));
           location.href = "chat_view.html";
         }
@@ -223,15 +271,21 @@
     });
   }
 
+  // 동아리 이름으로 게시글 필터링
   function filterPostsByClub(clubName) {
     const filtered = posts.filter(post => post.club.includes(clubName));
     renderPosts(filtered);
   }
 
+  // 페이지 로드시 전체 게시글 렌더링
   renderPosts(posts);
+
+  // 글 작성 버튼 클릭 시 이동
   writeBtn.addEventListener("click", () => {
     location.href = "write.html";
   });
 </script>
 </body>
 </html>
+
+<!--  * chat gpt의 도움을 받아 제작하였습니다 -->

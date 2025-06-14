@@ -9,11 +9,11 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
 
   <style>
-    /* 기본 설정 */
+    /* 기본설정 */
     * {
       box-sizing: border-box;
     }
-
+    
     body {
       margin: 0;
       font-family: 'Pretendard', sans-serif;
@@ -26,29 +26,29 @@
       height: 100vh;
     }
 
-    /* ✅ 공통 왼쪽 소개 패널 */
+    /* 공통 왼쪽 소개 패널 */
     .intro-panel {
-      background-color: #1d1d3f;
+      background-color: #1d1d3f; 
       color: white;
       display: flex;
-      flex-direction: column;
+      flex-direction: column; /* 세로 방향 정렬 */
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 2rem;
+      padding: 32px;
     }
 
     .intro-panel img {
-      width: 10rem;
+      width: 160px;
     }
 
     .intro-panel h1 {
-      font-size: 1.6rem;
+      font-size: 26px;
       margin: 0;
     }
 
     .intro-panel p {
-      font-size: 0.95rem;
+      font-size: 16px;
       color: #ccc;
       line-height: 1.5;
       max-width: 300px;
@@ -58,21 +58,22 @@
     .signup-right {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      padding: 4rem;
-      max-width: 480px;
-      margin: 0 auto;
+      justify-content: center; /* 세로 중앙 정렬 */
+      padding: 64px; /* 안쪽 여백 */
+      max-width: 480px; /* 최대 너비 제한 */
+      margin: 0 auto; /* 수평 중앙 정렬 */
     }
 
     .signup-right h2 {
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
+      font-size: 29px;
+      margin-bottom: 8px;
     }
 
+    /* 이미회원이신가요 문구 */
     .subtext {
-      font-size: 0.9rem;
+      font-size: 16px;
       color: #666;
-      margin-bottom: 1.5rem;
+      margin-bottom: 24px;
     }
 
     .google-signup {
@@ -83,28 +84,29 @@
       color: white;
       font-weight: 500;
       border: none;
-      padding: 0.5rem;
+      padding: 8px;
       border-radius: 4px;
-      cursor: pointer;
-      margin-bottom: 1.5rem;
+      cursor: pointer; /* 커서가 손가락 모양으로 바뀜 */
+      margin-bottom: 24px;
     }
 
     .google-signup img {
-      height: 1.5rem;
-      margin-right: 1rem;
+      height: 24px;
+      margin-right: 16px;
     }
 
+    /* '또는' 구분선 */
     .divider {
       text-align: center;
-      margin: 1.5rem 0;
-      font-size: 0.85rem;
+      margin: 15px 0;
+      font-size: 16px;
       color: #999;
       position: relative;
     }
 
     .divider::before,
     .divider::after {
-      content: "";
+      content: ""; /* 내용이 없는 빈 선 */
       position: absolute;
       top: 50%;
       width: 40%;
@@ -112,38 +114,45 @@
       background: #ccc;
     }
 
+    /* 왼쪽 선 */
     .divider::before {
-      left: 0;
+      left: 0; /* 왼쪽 끝에서 시작 */
     }
 
+    /* 오른쪽 선 */
     .divider::after {
-      right: 0;
+      right: 0; /* 오른쪽 끝에서 시작 */
     }
 
     .form-group {
       position: relative;
-      margin-bottom: 1.5rem;
+      margin-bottom: 24px;
     }
 
+    /* 입력창 위 표시되는 글 */
     label {
       display: block;
-      font-size: 0.9rem;
-      margin-bottom: 0.3rem;
+      font-size: 16px;
+      margin-bottom: 5px; /* 입력창 사이의 간격 */
     }
 
+    /* 이메일, 비밀번호 입력창 */
     input[type="email"],
     input[type="password"],
-    input[type="text"].password-input {
+    input[type="text"]
+    
+    .password-input {
       width: 100%;
-      padding: 0.7rem 2.5rem 0.7rem 0;
-      font-size: 1rem;
-      border: none;
-      border-bottom: 1px solid #aaa;
-      background: transparent;
-      outline: none;
+      padding: 11px 40px 11px 0;
+      font-size: 16px;
+      border: none; /* 테두리 없애기 */
+      border-bottom: 1px solid #aaa;  /* 연한 회색으로 밑줄 */
+      background: transparent; /* 배경 투명 */
+      outline: none; /* 클릭했을 때 생기는 테두리 제거 */
       font-family: 'Pretendard', sans-serif;
     }
 
+    /* 비밀번호 눈모양 버튼 */
     .toggle-eye {
       position: absolute;
       right: 10px;
@@ -152,48 +161,51 @@
       width: 24px;
       height: 24px;
       cursor: pointer;
-      z-index: 10;
+      z-index: 10; /* 겹쳐진 요소들 중 위에 보이도록 설정 */
     }
 
+    /* 약관 동의 등 체크박스 */
     .checkbox-group {
-      margin-top: 1.5rem;
-      font-size: 0.9rem;
+      margin-top: 24px;
+      font-size: 16px;
     }
 
     .checkbox-group label {
-      display: flex;
-      align-items: center;
-      margin-bottom: 0.5rem;
+      display: flex; /* 글자와 체크박스 가로로 정렬 */
+      align-items: center; /* 세로로 가운데 정렬 */
+      margin-bottom: 24px;
       cursor: pointer;
     }
 
     .checkbox-group input[type="checkbox"] {
-      margin-right: 0.5rem;
+      margin-right: 24px; /* 체크박스와 글자 사이 간격 */
     }
 
     .checkbox-group .bold {
       font-weight: 600;
     }
 
+    /* 회원가입 버튼 */
     .signup-btn {
-      margin-top: 2rem;
+      margin-top: 32px;
       background: #1d1d3f;
       color: white;
       border: none;
       width: 100%;
-      padding: 0.9rem;
-      font-size: 1rem;
+      padding: 16px;
+      font-size: 16px;
       cursor: pointer;
     }
 
+    /* 버튼에 마우스 올렸을 때 색 변화 */
     .signup-btn:hover {
-      background: #2c2c5a;
+      background: #2c2c5a; /* 좀 더 밝은 남색 */
     }
   </style>
 </head>
 <body>
 
-  <!-- 공통 왼쪽 소개 영역 -->
+  <!-- 왼쪽 소개 영억, 로고와 설명 -->
   <div class="half intro-panel">
     <img src="../assets/images/hanclub_white.svg" alt="HanClub 로고" />
     <h1>한동의 모든 동아리를 한눈에</h1>
@@ -203,43 +215,51 @@
     </p>
   </div>
 
-  <!-- 오른쪽: 회원가입 폼 -->
+ <!-- 오른쪽 회원가입 영역 -->
   <div class="half signup-right">
     <h2>회원 가입</h2>
     <div class="subtext">이미 회원이신가요? <a href="login.html">로그인하기</a></div>
 
-    <button class="google-signup">
+    <!-- 구글계정으로 가입 버튼 -->
+    <button class="google-signup"> 
       <img src="../assets/images/google_logo.svg" alt="구글 가입" />
       구글 계정으로 가입
     </button>
 
+    <!-- 또는 구분선 -->
     <div class="divider">또는</div>
-
+    
+    <!-- 이메일 입력 -->
     <div class="form-group">
       <label for="email">이메일</label>
       <input type="email" id="email" placeholder="이메일을 입력하세요." />
     </div>
 
+    <!-- 비밀번호 입력 -->
     <div class="form-group">
       <label for="password">비밀번호</label>
       <input type="password" id="password" class="password-input" placeholder="비밀번호를 입력하세요." />
       <img src="../assets/images/nonevisible.svg" class="toggle-eye" data-target="password" data-visible="false" alt="비밀번호 보기 토글" />
     </div>
 
+    <!-- 비밀번호 확인 -->
     <div class="form-group">
       <label for="password-confirm">비밀번호 확인</label>
       <input type="password" id="password-confirm" class="password-input" placeholder="비밀번호를 입력하세요." />
       <img src="../assets/images/nonevisible.svg" class="toggle-eye" data-target="password-confirm" data-visible="false" alt="비밀번호 보기 토글" />
     </div>
-
+    
+    <!-- 약관 동의 체크박스 -->
     <div class="checkbox-group">
       <label><input type="checkbox" checked /> <span class="bold">모두 확인, 동의합니다</span></label>
       <label><input type="checkbox" /> 회원가입 약관 동의 (필수)</label>
       <label><input type="checkbox" /> 개인정보 수집 및 이용 동의 (필수)</label>
     </div>
 
+    <!-- 회원가입 버튼 -->
     <button class="signup-btn">회원가입</button>
-  </div>
+  </div> 
+  <!-- 지피티를 사용하였음 -->
 
   <!-- 비밀번호 보기/숨기기 기능 -->
   <script>

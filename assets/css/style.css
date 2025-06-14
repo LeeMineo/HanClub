@@ -1,317 +1,255 @@
+/* ========== 기본 리셋 및 레이아웃 설정 ========== */
 html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  
-  body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  
-  /* 메인 콘텐츠가 늘어남 */
-  main {
-    flex: 1;
-  }
-  
-  
-
-/* 헤더 전체 */
-.main-header {
-    width: 100%;
-    background: white;
-  }
-  
-  /* 내부 정렬 컨테이너 */
-  .header-top.container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 1rem;
-    border-bottom: 1px solid #eee;
-  }
-  
-  /* 검색창 */
-  .search-box {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #2d2d42;
-    padding-bottom: 4px;
-    width: 200px;
-  }
-  
-  .search-box .icon {
-    margin-right: 6px;
-    color: #2d2d42;
-  }
-  
-  .search-box input {
-    border: none !important;
-    outline: none !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    font-size: 0.95rem !important;
-    color: #2d2d42 !important;
-    width: 100% !important;
-  }
-  
-  
-  /* 로고 및 텍스트 */
-  .logo-box {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-  }
-  
-  .logo-box img {
-    height: 68px;
-    padding-right: 100px;
-  }
-  
-  
-  /* 로그인 버튼 */
-  .login-link {
-    font-size: 0.9rem;
-    text-decoration: none;
-    color: #111;
-  }
-  
-  /* 네비게이션 바 (하단 메뉴) */
-  .nav-bar {
-    background: #1d1d3f;
-    text-align: center;
-    padding: 0.6rem 0;
-    gap: 3rem;
-  }
-  
-  .nav-bar a {
-    color: white !important;
-    margin: 0 10rem;
-    text-decoration: none;
-    font-size: 1.05rem;
-    font-weight: 300;
-  }
-  
-/* ********************************************************************** */
-
-/* 메인 배너 전체 영역 */
-.main-hero {
-    position: relative;
-    height: 400px;
-    background-image:
-    linear-gradient(rgba(10, 10, 30, 0.35), rgba(10, 10, 30, 0.35)),
-    url('../images/handong.svg');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    padding-left: 3rem; /* 왼쪽 여백 */
-  }
-  
-  /* 텍스트 오버레이 박스 */
-  .hero-overlay {
-    background-color: rgba(15, 15, 45, 0.85); /* 어두운 반투명 배경 */
-    color: white;
-    padding: 2rem 2.5rem;
-    max-width: 400px;
-    border-radius: 4px;
-  }
-  
-  /* 제목 */
-  .hero-overlay h1 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    line-height: 1.4;
-  }
-  
-  /* 설명 텍스트 */
-  .hero-overlay p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-    color: #ddd;
-  }
-  
-  /* 버튼 */
-  .hero-btn {
-    display: inline-block;
-    padding: 0.7rem 1.2rem;
-    background: white;
-    color: #111;
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: 4px;
-    font-size: 0.95rem;
-    transition: background 0.3s ease;
-  }
-  
-  .hero-btn:hover {
-    background: #e0e0e0;
-  }
-  
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
 body {
-    margin: 0;
-    font-family: 'Noto Sans KR', sans-serif;
-    background: #fff;
-    color: #222;
-  }
-  
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-  }
-  
-  .header {
-    background: white;
-    border-bottom: 1px solid #eee;
-    padding: 1rem 0;
-  }
-  
-  .nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: bold;
-    font-size: 1.2rem;
-  }
-  
-  .search {
-    flex: 1;
-    max-width: 200px;
-    padding: 0.4rem;
-    margin: 0 1rem;
-    border: 1px solid #000;
-    border-radius: 4px;
-  }
-  .search-box .icon {
-    width: 16px;
-    height: 16px;
-    margin-right: 6px;
-    filter: invert(15%); /* 검정 아이콘 유지 (원본 색상에 따라 조절) */
-  }
-  
-  
-  .nav-links a, .login {
-    margin: 0 0.5rem;
-    text-decoration: none;
-    color: #111;
-  }
-  
-  .hero {
-    position: relative;
-    background-image: url('../images/handong.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 400px;
-    display: flex;
-    align-items: center;
-  }
-  
-  .hero .overlay {
-    background: rgba(0, 0, 50, 0.7);
-    color: white;
-    padding: 2rem;
-    margin-left: 2rem;
-    max-width: 500px;
-  }
-  
-  .hero .btn {
-    display: inline-block;
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    background: white;
-    color: #000;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 4px;
-  }
-  
-  .notice-board {
-    background: #f9f9f9;
-    padding: 2rem 0;
-  }
-  
-  .notice {
-    display: flex;
-    justify-content: space-between;
-    gap: 2rem;
-  }
-  
-  .notice-column {
-    flex: 1;
-  }
-  
-  .notice-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-  
-  .notice-column ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .notice-column li {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #ddd;
-    font-size: 0.95rem;
-  }
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* 푸터를 바닥에 고정 */
+  font-family: 'Noto Sans KR', sans-serif;
+  background: #fff;
+  color: #222;
+}
 
-/* ********************************************************************** */
-  /* 푸터 */
-  
-  .footer {
-    background: #111333;
-    color: #eee;
-    text-align: center;
-    padding: 0.3rem 0;
-    margin-top: 2rem;
-  }
+main {
+  flex: 1; /* main이 남은 공간을 모두 차지하도록 */
+}
 
-/* ********************************************************************** */
-  /* 로그인, 회원가입 페이지 왼쪽 부분 */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
 
-  .intro-panel {
-    background-color: #1d1d3f;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 2rem;
-  }
-  
-  .intro-panel img {
-    width: 10rem;
-  }
-  
-  .intro-panel h1 {
-    font-size: 1.6rem;
-    margin: 0;
-  }
-  
-  .intro-panel p {
-    font-size: 0.95rem;
-    color: #ccc;
-    line-height: 1.5;
-    max-width: 300px;
-  }
-  
+
+/* ========== 헤더 영역 ========== */
+.main-header {
+  width: 100%;
+  background: white;
+}
+
+.header-top.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+/* 검색창 */
+.search-box {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #2d2d42;
+  padding-bottom: 4px;
+  width: 200px;
+}
+
+.search-box .icon {
+  margin-right: 6px;
+  width: 16px;
+  height: 16px;
+  filter: invert(15%);
+}
+
+.search-box input {
+  border: none !important;
+  outline: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 0.95rem !important;
+  color: #2d2d42 !important;
+  width: 100% !important;
+}
+
+/* 로고 */
+.logo-box {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.logo-box img {
+  height: 68px;
+  padding-right: 100px;
+}
+
+/* 로그인 링크 */
+.login-link {
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: #111;
+}
+
+/* 네비게이션 바 */
+.nav-bar {
+  background: #1d1d3f;
+  text-align: center;
+  padding: 0.6rem 0;
+  gap: 3rem;
+}
+
+.nav-bar a {
+  color: white !important;
+  margin: 0 10rem;
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 300;
+}
+
+
+/* ========== 메인 히어로 영역 ========== */
+.main-hero {
+  position: relative;
+  height: 400px;
+  background-image:
+    linear-gradient(rgba(10, 10, 30, 0.35), rgba(10, 10, 30, 0.35)),
+    url('../images/handong.svg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  padding-left: 3rem;
+}
+
+.hero-overlay {
+  background-color: rgba(15, 15, 45, 0.85);
+  color: white;
+  padding: 2rem 2.5rem;
+  max-width: 400px;
+  border-radius: 4px;
+}
+
+.hero-overlay h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.hero-overlay p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  color: #ddd;
+}
+
+.hero-btn {
+  display: inline-block;
+  padding: 0.7rem 1.2rem;
+  background: white;
+  color: #111;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  transition: background 0.3s ease;
+}
+
+.hero-btn:hover {
+  background: #e0e0e0;
+}
+
+
+/* ========== 공지사항/홍보 섹션 ========== */
+.notice-board {
+  background: #fff;
+  padding: 2rem 1rem;
+  font-family: 'Pretendard', sans-serif;
+}
+
+.notice {
+  display: flex;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 3rem;
+}
+
+.notice-column {
+  flex: 1;
+  background: white;
+  padding: 1.5rem 2rem;
+  border-radius: 8px;
+}
+
+.notice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #1D1D36;
+  padding-bottom: 0.5rem;
+}
+
+.notice-header h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.notice-header a {
+  font-size: 0.9rem;
+  color: #777;
+  text-decoration: none;
+}
+
+.notice-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notice-column li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.notice-column li:last-child {
+  border-bottom: none;
+}
+
+
+/* ========== 푸터 ========== */
+.footer {
+  background: #111333;
+  color: #eee;
+  text-align: center;
+  padding: 0.3rem 0;
+  margin-top: 2rem;
+}
+
+
+/* ========== 로그인/회원가입 왼쪽 소개 패널 ========== */
+.intro-panel {
+  background-color: #1d1d3f;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.intro-panel img {
+  width: 10rem;
+}
+
+.intro-panel h1 {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.intro-panel p {
+  font-size: 0.95rem;
+  color: #ccc;
+  line-height: 1.5;
+  max-width: 300px;
+}

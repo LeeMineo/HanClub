@@ -13,27 +13,28 @@
       padding: 2rem;
     }
 
+    /* 자바스크립트에서 사용됨 */
     .user-info h2 {
-      margin: 0 0 0.3rem;
+      margin: 0 0 5px;
     }
 
     .user-info p {
-      margin: 0.2rem 0;
+      margin: 3px 0;
       color: #333;
-      font-size: 0.95rem;
+      font-size: 16px;
     }
 
     .tab-menu {
       display: flex;
-      margin: 2rem 0 1rem;
+      margin: 32px 0 16px;
       border-bottom: 2px solid #222;
     }
 
     .tab-menu button {
       background: none;
       border: none;
-      font-size: 1rem;
-      padding: 0.7rem 1.2rem;
+      font-size: 16px;
+      padding: 15px 17px;
       cursor: pointer;
       font-weight: 500;
       color: #555;
@@ -52,30 +53,34 @@
     .tab-content.active {
       display: block;
     }
+    /* 자바스크립트에서 사용됨 */
 
+    /* 동아리명 화면 */
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 1rem;
+      margin-top: 16px;
     }
 
     th, td {
-      padding: 0.8rem;
+      padding: 16px;
       border-bottom: 1px solid #ccc;
       text-align: left;
-      font-size: 0.95rem;
+      font-size: 16px;
     }
 
+    /* 글쓰기 버튼 */
     .write-btn {
       float: right;
-      margin-top: 1.5rem;
-      padding: 0.6rem 1.2rem;
+      margin-top: 24px;
+      padding: 25px 20px;
       background: #1d1d3f;
       color: white;
       border: none;
       cursor: pointer;
     }
 
+    /* 로그아웃 버튼 화면 하단 고정 */
     .logout-fixed {
       position: fixed;
       bottom: 20px;
@@ -83,29 +88,33 @@
       background: #1d1d3f;
       color: white;
       border: none;
-      padding: 0.6rem 1rem;
-      font-size: 0.9rem;
+      padding: 25px 16px;
+      font-size: 16px;
       border-radius: 4px;
       cursor: pointer;
     }
   </style>
 </head>
 <body>
-
+<!-- 검색창, 로고, 마이페이지  -->
 <header class="main-header">
   <div class="header-top container">
+    <!-- 검색창 -->
     <div class="search-box">
       <img src="../assets/images/search.svg" alt="검색" class="icon" />
       <input type="text" placeholder="Search..." />
     </div>
 
+    <!-- 로고 -->
     <div class="logo-box">
       <img src="../assets/images/hanclub.svg" alt="HanClub Logo" />
     </div>
 
+    <!-- 마이페이지 링크 -->
     <a href="mypage.html" class="login-link">MYPAGE</a>
   </div>
 
+  <!-- 네비게이션 메뉴 -->
   <nav class="nav-bar">
     <a href="index.html">Home</a>
     <a href="club_intro.html">Clubs</a>
@@ -113,28 +122,32 @@
   </nav>
 </header>
 
+<!-- 메인 콘텐츠 영역 -->
 <main>
+   <!-- 사용자 정보 표시, 자바스크립트에 들어감 -->
   <section class="user-info" id="user-info">
-    <!-- 사용자 정보 동적 삽입 -->
   </section>
 
+  <!-- 나의 동아리 / 작성글 -->
   <div class="tab-menu">
     <button class="tab-btn active" data-tab="clubs">나의 동아리</button>
     <button class="tab-btn" data-tab="posts">작성 글</button>
   </div>
 
+  <!-- 나의 동아리 탭 콘텐츠 -->
   <div id="clubs" class="tab-content active">
     <table>
       <thead>
         <tr><th>동아리명</th></tr>
       </thead>
       <tbody id="club-list">
-        <!-- 동아리 목록 삽입 -->
+        <!-- 동아리 목록 삽입, 자바스크립트 -->
       </tbody>
     </table>
     <button class="write-btn">글 작성</button>
   </div>
 
+  <!-- 작성글 탭 콘텐츠 -->
   <div id="posts" class="tab-content">
     <table>
       <thead>
@@ -146,12 +159,13 @@
         </tr>
       </thead>
       <tbody id="post-list">
-        <!-- 작성 글 삽입 -->
+        <!-- 작성 글 삽입, 자바스크립트 -->
       </tbody>
     </table>
   </div>
 </main>
 
+<!-- 페이지 하단 푸터 -->
 <footer class="footer">
   <p>© 2025 HanClub. All rights reserved.</p>
 </footer>
@@ -159,7 +173,7 @@
 <!-- 로그아웃 버튼 -->
 <button class="logout-fixed" onclick="handleLogout()">로그아웃</button>
 
-<!-- 스크립트 로딩 -->
+<!-- 스크립트 로딩, 자바스크립트 -->
 <script src="../assets/js/data.js"></script>
 <script>
   const user = getLoginUser();
