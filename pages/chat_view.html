@@ -3,41 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <title>게시글 보기 - HanClub</title>
+    <!-- 모바일 화면 크기 적용 / 화면 확대 비율 1배 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- style.css 가져옴 -->
   <link rel="stylesheet" href="../assets/css/style.css" />
+    <!-- pretendard 폰트 가져옴 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
   <style>
+
     main {
       width: 100%;
       max-width: 900px;
-      margin: 2rem auto;
+      margin: 2rem auto; /* 위 아래 2rem 간격, 좌우 자동 */
       background: white;
       padding: 2rem 2.5rem;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-      font-family: 'Pretendard', sans-serif;
+      border-radius: 8px; /* 모서리 둥글게(8px) */
+      font-family: 'Pretendard', sans-serif; /* pretendard 폰트 지정, 적용 안될 시, sans-serif  */
     }
+
+    /* 작성자, 날짜, 소속 동아리 등을 나타내는 영역 */
     .post-meta {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-between; /*좌 우 끝으로 배치*/
       font-size: 0.9rem;
       color: #666;
       margin-bottom: 1rem;
     }
+
+    /* 글 게시물 제목 부분 */
     .post-title {
       font-size: 1.8rem;
       font-weight: bold;
       margin-bottom: 1.2rem;
     }
+
+    /* 게시글 본문 내용 */ 
     .post-content {
       white-space: pre-line;
       line-height: 1.6;
       font-size: 1rem;
     }
+
+    /* 버튼을 감싸는 박스 */
     .btn-box {
       margin-top: 2rem;
       text-align: right;
     }
+    
+    /* 목록 버튼 */
     .btn-box button {
       background-color: #202032;
       color: white;
@@ -45,9 +59,12 @@
       padding: 0.6rem 1.2rem;
       font-size: 1rem;
       border-radius: 4px;
+      /* 버튼에 마우스를 올리면 손가락 모양이로 바뀌어 클릭이 가능하게 해줌 */
       cursor: pointer;
     }
+
     .btn-box button:hover {
+      /* 목록 버튼 색깔이 바뀌는 호버 효과 추가 */
       background-color: #343456;
     }
   </style>
@@ -55,6 +72,7 @@
 <body>
 
 <!-- HanClub 헤더 -->
+<!-- notion을 통해 함께 디자인 기획, 제작, 코드 작성 및 공유 -->
 <header class="main-header">
   <div class="header-top container">
     <div class="search-box">
@@ -74,23 +92,31 @@
 </header>
 
 <main>
+  <!-- 게시글 정보(동아리 이름, 작성자 및 작성일)를 한 줄에 좌우로 배치하는 영역 -->
   <div class="post-meta">
-    <span id="post-club">📁 </span> 
+  <!-- 동아리 이름을 표시할 공간 -->
+    <span id="post-club"></span>
+  <!-- 작성자 이름과 작성일 정보를 표시할 공간 -->
     <span id="post-author"></span>
   </div>
 
+  <!-- 게시글의 제목을 보여주는 영역, 아이디를 통해 자바스크립트로 내용을 넣음 -->
   <div class="post-title" id="post-title"></div>
+  <!-- 게시글 본문 내용을 보여주는 영역, 줄 바꿈이 유지되어 가독성을 높임 -->
   <div class="post-content" id="post-content"></div>
 
+  <!-- 버튼 영역, 오른쪽 끝에 배치되어 있으며 클릭 시 게시글 목록 페이지로 이동 -->
   <div class="btn-box">
     <button onclick="location.href='club_intro.html'">목록</button>
   </div>
 </main>
 
+<!-- 저작권 -->
 <footer class="footer">
   <p>© 2025 HanClub. All rights reserved.</p>
 </footer>
 
+<!-- 자바는 다룰 줄 몰라 이민서 학우의 도움을 얻었습니다. -->
 <script>
   const post = JSON.parse(localStorage.getItem("selectedPost"));
 

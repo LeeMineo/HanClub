@@ -2,9 +2,12 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
+      <!-- 모바일 화면 크기 적용 / 화면 확대 비율 1배 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HanClub - 게시글 작성</title>
+      <!-- style.css 가져옴 -->
   <link rel="stylesheet" href="../assets/css/style.css" />
+      <!-- pretendard 폰트 가져옴 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
   <style>
     .write-container {
@@ -61,6 +64,8 @@
 <body>
 
 <!-- HanClub 헤더 -->
+<!-- notion을 통해 함께 디자인 기획, 제작, 코드 작성 및 공유 -->
+
 <header class="main-header">
   <div class="header-top container">
     <div class="search-box">
@@ -81,7 +86,9 @@
 </header>
 
 <main>
+      <!-- 전체 입력 폼을 감싸는 하얀색/박스 모양 컨테이너 style 적용 -->
   <div class="write-container">
+      <!-- 박스 맨 위에 있는 굵고 큰 제목 + 텍스트 밑에 줄 적용 -->
     <h2>📌 게시글 작성</h2>
     <form id="writeForm">
       <!-- 동아리 선택 -->
@@ -110,10 +117,12 @@
   </div>
 </main>
 
+<!-- 저작권 -->
 <footer class="footer">
   <p>© 2025 HanClub. All rights reserved.</p>
 </footer>
 
+<!-- 자바 부분은 다룰 줄 몰라 이민서 학우의 도움을 얻었습니다. -->
 <!-- 로그인 유저 정보 및 동아리 반영 스크립트 -->
 <script src="../assets/js/data.js"></script>
 <script>
