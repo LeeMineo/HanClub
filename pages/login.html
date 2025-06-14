@@ -1,291 +1,339 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>로그인 - HanClub</title>
-
-  <!-- Pretendard 폰트 -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Pretendard', sans-serif;
-      height: 100vh;
-      display: flex;
-    }
-
-    .half {
-      width: 50%;
-      height: 100vh;
-    }
-
-    /*  공통 소개 패널 (회원가입/로그인 공통 사용) */
-    .intro-panel {
-      background-color: #1d1d3f;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    .intro-panel img {
-      width: 10rem;
-    }
-
-    .intro-panel h1 {
-      font-size: 1.6rem;
-      margin: 0;
-    }
-
-    .intro-panel p {
-      font-size: 0.95rem;
-      color: #ccc;
-      line-height: 1.5;
-      max-width: 300px;
-    }
-
-    /* 로그인 폼 영역 */
-    .login-right {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 4rem;
-      max-width: 480px;
-      margin: 0 auto;
-    }
-
-    .login-right h2 {
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .subtext {
-      font-size: 0.9rem;
-      color: #666;
-      margin-bottom: 1.5rem;
-    }
-
-    .google-login {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #4285f4;
-      color: white;
-      font-weight: 500;
-      border: none;
-      padding: 0.7rem;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-bottom: 1.5rem;
-    }
-
-    .google-login img {
-      height: 1.5rem;
-      margin-right: 1rem;
-    }
-
-    .divider {
-      text-align: center;
-      margin: 1.5rem 0;
-      font-size: 0.85rem;
-      color: #999;
-      position: relative;
-    }
-
-    .divider::before,
-    .divider::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      width: 40%;
-      height: 1px;
-      background: #ccc;
-    }
-
-    .divider::before {
-      left: 0;
-    }
-
-    .divider::after {
-      right: 0;
-    }
-
-    .form-group {
-      position: relative;
-      margin-bottom: 1.5rem;
-    }
-
-    label {
-      display: block;
-      font-size: 0.9rem;
-      margin-bottom: 0.3rem;
-    }
-
-    input[type="email"],
-    input[type="password"],
-    input[type="text"].password-input {
-      width: 100%;
-      padding: 0.7rem 2.5rem 0.7rem 0;
-      font-size: 1rem;
-      border: none;
-      border-bottom: 1px solid #aaa;
-      background: transparent;
-      outline: none;
-      font-family: 'Pretendard', sans-serif;
-    }
-
-    .toggle-eye {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 24px;
-      height: 24px;
-      cursor: pointer;
-      z-index: 10;
-    }
-
-    .checkbox-group {
-      margin: 1rem 0;
-      font-size: 0.9rem;
-    }
-
-    .checkbox-group label {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-    }
-
-    .checkbox-group input[type="checkbox"] {
-      margin-right: 0.5rem;
-    }
-
-    .login-btn {
-      margin-top: 1rem;
-      background: #1d1d3f;
-      color: white;
-      border: none;
-      width: 100%;
-      padding: 0.9rem;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-
-    .login-btn:hover {
-      background: #2c2c5a;
-    }
-
-    .footer-link {
-      text-align: center;
-      margin-top: 2rem;
-      font-size: 0.9rem;
-      color: #888;
-      text-decoration: none;
-    }
-
-    .footer-link:hover {
-      color: #1d1d3f;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- 공통 왼쪽 소개 패널 -->
-  <div class="half intro-panel">
-    <img src="../assets/images/hanclub_white.svg" alt="HanClub 로고" />
-    <h1>한동의 모든 동아리를 한눈에</h1>
-    <p>
-      HanClub은 한동대학교의 모든 동아리 정보를 한곳에 모아 제공합니다.<br />
-      관심 있는 동아리를 찾고, 함께 활동해보세요.
-    </p>
-  </div>
-
-  <!-- 로그인 폼 영역 -->
-  <div class="half login-right">
-    <h2>로그인</h2>
-    <div class="subtext">아직 회원이 아니세요? <a href="signup.html">회원가입</a></div>
-
-    <!-- 구글 로그인 -->
-    <button class="google-login">
-      <img src="../assets/images/google_logo.svg" alt="구글 로그인" />
-      구글 로그인
-    </button>
-
-    <div class="divider">또는</div>
-
-    <div class="form-group">
-      <label for="email">이메일</label>
-      <input type="email" id="email" placeholder="이메일을 입력하세요." />
-    </div>
-
-    <div class="form-group">
-      <label for="password">비밀번호</label>
-      <input type="password" id="password" class="password-input" placeholder="비밀번호를 입력하세요." />
-      <img src="../assets/images/nonevisible.svg" class="toggle-eye" data-target="password" data-visible="false" alt="비밀번호 보기 토글" />
-    </div>
-
-    <div class="checkbox-group">
-      <label><input type="checkbox" /> 자동 로그인</label>
-    </div>
-
-    <button class="login-btn">로그인</button>
-
-    <a href="index.html" class="footer-link">메인으로</a>
-  </div>
-
-  <!-- 비밀번호 보기/숨기기 스크립트 -->
-  <script>
-    const toggleIcons = document.querySelectorAll('.toggle-eye');
-
-    toggleIcons.forEach(icon => {
-      icon.addEventListener('click', () => {
-        const inputId = icon.dataset.target;
-        const input = document.getElementById(inputId);
-        const isVisible = icon.dataset.visible === 'true';
-
-        if (isVisible) {
-          input.type = 'password';
-          icon.src = '../assets/images/nonevisible.svg';
-        } else {
-          input.type = 'text';
-          icon.src = '../assets/images/visible.svg';
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로그인 - HanClub</title>
+    <!-- header랑 footer 외부 라이브러리에서 css적용 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+    <style>
+        /* 미묘하게 padding, margin를 적용할 때 이상해서 지피티 형님께 여쭤보니 친히 이 코드를 내려주심 */
+        * {
+            box-sizing: border-box;
         }
 
-        icon.dataset.visible = (!isVisible).toString();
-      });
-    });
-  </script>
+        /* Pretendard, sans-serif 폰트 적용, flex 적용으로 파트 나누기 */
+        body {
+            margin: 0;
+            font-family: 'Pretendard', sans-serif;
+            height: 100vh;
+            display: flex;
+        }
 
-<!-- 로그인 스크립트 -->
-<script src="../assets/js/data.js"></script> 
-<script>
-  document.querySelector(".login-btn").addEventListener("click", () => {
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
+        /* 파트 구별용 왼쪽 */
+        .half {
+            width: 50%;
+            height: 100%;
+        }
 
-    // 여기서 data.js의 users 배열을 참조함
-    const user = users.find(u => u.email === email && u.password === password);
+        /*  로그인과 회원가입 창에 같은 css 태그 적용해서 일관성 높이기
+        특히 flex-direction 코드를 이용해서 리딩 라인을 유지하게 함 */
+        .intro-panel {
+            background-color: #1d1d3f;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
 
-    if (user) {
-      localStorage.setItem("loginUser", JSON.stringify(user));
-      alert("로그인 성공!");
-      location.href = "index.html"; // 성공 시 이동
-    } else {
-      alert("이메일 또는 비밀번호가 올바르지 않습니다.");
-    }
-  });
-</script>
+        /* 이미지 파일 크기 */
+        .intro-panel img {
+            width: 160px;
+        }
 
-  
+        .intro-panel h1 {
+            font-size: 25px;
+            margin: 0;
+        }
+
+        /* 폰트사이즈, 컬러 설정하고
+        선 크기 설정
+         */
+        .intro-panel p {
+            font-size: 16px;
+            color: #ccc;
+            line-height: 1.5;
+            max-width: 300px;
+        }
+
+        /* 로그인 폼 영역 */
+        .login-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 64px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* 로그인 오른쪽에 있는 h2 설정 */
+        .login-right h2 {
+            font-size: 30px;
+            margin-bottom: 130px;
+        }
+
+        .subtext {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        /* 구글 로그인 버튼 부분쪽
+        flex 적용
+        글자 센터로
+        커서를 포인터로 해서 누를 수 있다는 걸 알려주기
+        폰트 크게
+        패팅으로 간격 주기 */
+        .google-login {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #4285f4;
+            color: white;
+            font-weight: 500;
+            border: none;
+            padding: 11px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 25px;
+        }
+
+        /* 구글 로그인 이미지 설정 */
+        .google-login img {
+            height: 25px;
+            margin-right: 18px;
+        }
+
+        /* divider부터 divider::after 까지 절취선 구분을 위해서 만듦 */
+        .divider {
+            text-align: center;
+            margin: 24px 0;
+            font-size: 15px;
+            color: #999;
+            position: relative;
+        }
+
+        /* 이거 만드는 거는 지피티 형님께 여쭤봤습니다 */
+        .divider::before,
+        .divider::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: #ccc;
+        }
+
+        .divider::before {
+            left: 0;
+        }
+
+        .divider::after {
+            right: 0;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        /* 한줄에 하나씩 쓰는게 아니라서 분리하려고 만듦 */
+        label {
+            display: block;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+
+        /* input 타입 설정 */
+        input[type="email"],
+        input[type="password"],
+        input[type="text"].password-input {
+            width: 100%;
+            padding: 11px 40px 11px 0;
+            font-size: 1rem;
+            border: none;
+            /* 바텀 라인에 줄을 하나 그어줌으로서 깔끔하게 했음 */
+            border-bottom: 1px solid #aaa;
+            background: transparent;
+            outline: none;
+            font-family: 'Pretendard', sans-serif;
+        }
+
+        /*  */
+        .toggle-eye {
+            position: absolute;
+            /* 오른쪽으로 */
+            right: 10px;
+            /* 세로 방향으로 끄ㄹ어옴 */
+            top: 50%;
+            /* 중앙 정렬이 안되서 -로 땡겨옴 */
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            /* 가려져서 먼저 보여지도록 어떻게 하냐고 지피티 형님께 여쭤봤더니 짜잔하고 나온 코드 */
+            z-index: 10;
+        }
+
+        /* 체크 박스 위아래 공백을 주고 크기 키워줌 */
+        .checkbox-group {
+            margin: 15px 0;
+            font-size: 15px;
+        }
+
+        /* 누를 수 있다는 걸 알려주기 위해 호버 시에 커서 변경 하는 걸 넣음
+        자꾸 세로로 들어가서 글자랑 나란히 붙여놓기 위해서 flex 적용 및 align-items 적용 */
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        /* 마진으로 네모 칸을 로그인, 비밀번호 칸과 떨어트려 놓기 위해 공백 넣어주기 */
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        /* 로그인 버튼
+        클릭시 무언가 작용할 될 수 있다는 것을 알리기 위해 커서 포인터 설정
+        보더를 없앰
+        줄 선 있는게 안예뻐서 보더를 없앰*/
+        .login-btn {
+            margin-top: 15px;
+            background: #1d1d3f;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        /* 호버하고 있을때 로그인 버튼 색이 바뀌도록 설정함 */
+        .login-btn:hover {
+            background: #2c2c5a;
+        }
+
+        /* footer에 메인으로 가기 창에 스타일 적용함 */
+        .footer-link {
+            text-align: center;
+            margin-top: 32px;
+            font-size: 15px;
+            color: #888;
+            text-decoration: none;
+        }
+
+        /* 메인으로 넘어가기를 클릭했을 때 색갈이 바뀌도록 함 */
+        .footer-link:hover {
+            color: #1d1d3f;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 공통 왼쪽 소개 패널 -->
+    <div class="half intro-panel">
+        <img src="../assets/images/hanclub_white.svg" alt="HanClub 로고" />
+        <h1>한동의 모든 동아리를 한눈에</h1>
+        <p>
+            HanClub은 한동대학교의 모든 동아리 정보를 한곳에 모아 제공합니다.<br />
+            관심 있는 동아리를 찾고, 함께 활동해보세요.
+        </p>
+    </div>
+
+    <!-- 로그인 폼 영역 -->
+    <div class="half login-right">
+        <h2>로그인</h2>
+        <div class="subtext">아직 회원이 아니세요? <a href="signup.html">회원가입</a></div>
+
+        <!-- 구글 로그인 -->
+        <button class="google-login">
+            <img src="../assets/images/google_logo.svg" alt="구글 로그인" />
+            구글 로그인
+        </button>
+
+        <!-- divider 코드를 적용해서 양 사이에 글이 쳐지도록 했음 -->
+        <div class="divider">또는</div>
+
+        <!-- 이메일 작성 칸 -->
+        <!-- bottom에 선 그어서 구분할 수 있도록 하기 -->
+        <div class="form-group">
+            <label for="email">이메일</label>
+            <input type="email" id="email" placeholder="이메일을 입력하세요." />
+        </div>
+
+        <!-- 비밀번호 작성칸 -->
+        <div class="form-group">
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" class="password-input" placeholder="비밀번호를 입력하세요." />
+            <img src="../assets/images/nonevisible.svg" class="toggle-eye" data-target="password" data-visible="false"
+                alt="비밀번호 보기 토글" />
+        </div>
+
+        <!-- 로그인 버튼 박스 -->
+        <div class="checkbox-group">
+            <label><input type="checkbox" /> 자동 로그인</label>
+        </div>
+        <!-- css 적용 -->
+        <button class="login-btn">로그인</button>
+
+        <!-- 메인으로 이동할 수 있게 html 만듦 -->
+        <a href="index.html" class="footer-link">메인으로</a>
+    </div>
+
+
+    <!-- 비밀번호 보기/숨기기 스크립트 -->
+    <script>
+        const toggleIcons = document.querySelectorAll('.toggle-eye');
+
+        toggleIcons.forEach(icon => {
+            icon.addEventListener('click', () => {
+                const inputId = icon.dataset.target;
+                const input = document.getElementById(inputId);
+                const isVisible = icon.dataset.visible === 'true';
+
+                if (isVisible) {
+                    input.type = 'password';
+                    icon.src = '../assets/images/nonevisible.svg';
+                } else {
+                    input.type = 'text';
+                    icon.src = '../assets/images/visible.svg';
+                }
+
+                icon.dataset.visible = (!isVisible).toString();
+            });
+        });
+    </script>
+
+    <!-- 5학년 천사 누님께서 친히 내려주심 -->
+
+    <!-- 로그인 스크립트 -->
+    <script src="../assets/js/data.js"></script>
+    <script>
+        document.querySelector(".login-btn").addEventListener("click", () => {
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            // 여기서 data.js의 users 배열을 참조함
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (user) {
+                localStorage.setItem("loginUser", JSON.stringify(user));
+                alert("로그인 성공!");
+                location.href = "index.html"; // 성공 시 이동
+            } else {
+                alert("이메일 또는 비밀번호가 올바르지 않습니다.");
+            }
+        });
+    </script>
+
+
 
 </body>
+
 </html>

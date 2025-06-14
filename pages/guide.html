@@ -1,173 +1,256 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HanClub - About</title>
-  <link rel="stylesheet" href="../assets/css/style.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
-  <style>
-    .About-HanClub {
-      background-color: #F4F4F5;
-      padding: 2rem 0;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HanClub - About</title>
+    <!-- 공용 style css 적용 -->
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+    <style>
+        /* 배경색 및 위아래 공간 설정 */
+        .About-HanClub {
+            background-color: #F4F4F5;
+            padding: 36px 0;
+        }
 
-    .About-HanClub h1 {
-      text-align: center;
-      margin: 0;
-      font-size: 2rem;
-      font-weight: 500;
-    }
+        /* 가운데 배치, 폰트 사이즈 및 글자 크기 변경 
+        나눈 이유는 h1 적용시에 독립적인 코드가 필요했기 때문임*/
+        .About-HanClub h1 {
+            text-align: center;
+            margin: 0;
+            font-size: 36px;
+            font-weight: 500;
+        }
 
-    .content-wrapper {
-      display: flex;
-      padding: 2rem;
-    }
+        /*  */
+        .content-wrapper {
+            display: flex;
+            padding: 36px;
+        }
 
-    .sidebar {
-      width: 220px;
-      padding-right: 1.5rem;
-    }
+        /* 사이드바 넓이, 오른쪽 공간 주기 */
+        .sidebar {
+            width: 220px;
+            padding-right: 24px;
+        }
 
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-      border-top: 2px solid #1d1d3f;
-      border-bottom: 2px solid #1d1d3f;
-    }
+        /* list-style점 빼주기
+        사각형으로 박스 안만들고 위 아래만 선 긋기 */
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            border-top: 2px solid #1d1d3f;
+            border-bottom: 2px solid #1d1d3f;
+        }
 
-    .sidebar li {
-      padding: 0.6rem 0;
-      cursor: pointer;
-    }
+        /* li태그 위 아래 공백 주기 */
+        /* 커서 모양 바꿔주기 */
+        .sidebar li {
+            padding: 11px 0;
+            cursor: pointer;
+        }
 
-    .sidebar li:hover,
-    .sidebar li.active {
-      color: #1d1d3f;
-      font-weight: bold;
-    }
+        /* 사이드바에 있는 li 태드에 호버 했을 때 색상 변경, 볼드체로 변경 */
+        /* 누른 li 태그를 볼드체, 검정으로 유지 */
+        .sidebar li:hover,
+        .sidebar li.active {
+            color: #1d1d3f;
+            font-weight: bold;
+        }
 
-    .about-content {
-      flex: 1;
-      padding: 2rem;
-      border: 1px solid #aaa;
-      background: white;
-    }
+        /* 공백 크게 주기
+        배경 색 변경
+        플렉스 1로 꽉채워주기
+         */
+        .about-content {
+            flex: 1;
+            padding: 35px;
+            border: 1px solid #aaa;
+            background: white;
+        }
 
-    .about-content h2 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-    }
+        /* 폰트 사이즈 변경하고 아래에 공백 */
+        .about-content h2 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
 
-    .about-content p {
-      margin-bottom: 1rem;
-      line-height: 1.6;
-    }
+        /* 아래에 공백, 라인 굵기 변경 */
+        .about-content p {
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
 
-    .about-content img {
-      max-width: 100%;
-      margin-top: 1rem;
-      border: 1px solid #ccc;
-    }
-  </style>
+        /* 왼쪽에 꽉차도록 크기 설정
+         */
+        .about-content img {
+            max-width: 100%;
+            margin-top: 16px;
+            border: 1px solid #ccc;
+        }
+    </style>
 </head>
+
 <body>
-<header class="main-header">
-  <div class="header-top container">
-    <div class="search-box">
-      <img src="../assets/images/search.svg" alt="검색" class="icon" />
-      <input type="text" placeholder="Search..." />
-    </div>
-    <div class="logo-box">
-      <img src="../assets/images/hanclub.svg" alt="HanClub Logo" />
-    </div>
-    <a href="login.html" class="login-link" id="loginLink">LOGIN</a>
-  </div>
-  <nav class="nav-bar">
-    <a href="index.html">Home</a>
-    <a href="club_intro.html">Clubs</a>
-    <a href="guide.html">About</a>
-  </nav>
-</header>
+    <!-- 헤더 스타일 css는 외부 라이브베버리에서 따옴 -->
+    <header class="main-header">
+        <div class="header-top container">
 
-<main class="main-content">
-  <div class="About-HanClub"> 
-    <h1>About HanClub</h1>
-  </div>
-  <div class="content-wrapper">
-    <aside class="sidebar">
-      <ul>
-        <li class="active" data-target="use">웹사이트 이용 안내</li>
-        <li data-target="privacy">개인정보처리방침</li>
-        <li data-target="copyright">저작권 안내</li>
-        <li data-target="purpose">사이트 개발 목적</li>
-      </ul>
-    </aside>
-    <section class="about-content" id="contentArea">
-      <h2>웹사이트 이용 안내</h2>
-      <p>HanClub은 한동대학교 재학생들이 동아리 정보를 쉽고 빠르게 확인할 수 있도록 제작된 플랫폼입니다.</p>
-      <p>좌측의 동아리 분과 메뉴를 통해 원하는 동아리 정보를 탐색하고, 게시글을 열람할 수 있습니다.</p>
-    </section>
-  </div>
-</main>
+            <!-- 외부 css 적용 -->
+            <div class="search-box">
 
-<footer class="footer">
-  <p>© 2025 HanClub. All rights reserved.</p>
-</footer>
+                <!-- 돋보기 모양 사진 저장 -->
+                <img src="../assets/images/search.svg" alt="검색" class="icon" />
 
-<!-- 탭 동작 + 로그인 상태 적용 -->
-<script>
-  // 로그인 상태 처리
-  const loginUser = JSON.parse(localStorage.getItem("loginUser"));
-  const loginLink = document.getElementById("loginLink");
+                <!-- 사이트에서 필요한 정보들을 용이하게 찾을 수 있게 하기 위하여 search 만듦 -->
+                <input type="text" placeholder="Search..." />
+            </div>
 
-  if (loginUser) {
-    loginLink.textContent = "MYPAGE";
-    loginLink.href = "mypage.html";
-  } else {
-    loginLink.textContent = "LOGIN";
-    loginLink.href = "login.html";
-  }
+            <!-- 외부 css 적용으로 사진 크기 알맞게 조정 -->
+            <div class="logo-box">
+                <img src="../assets/images/hanclub.svg" alt="HanClub Logo" />
+            </div>
 
-  // 탭 클릭 시 내용 변경
-  const tabs = document.querySelectorAll(".sidebar li");
-  const content = document.getElementById("contentArea");
+            <!-- 클릭시에 로그인으로 이동 -->
+            <a href="login.html" class="login-link" id="loginLink">LOGIN</a>
+        </div>
+        <!-- nav 파트를 만들어서 사이트의 주요 페이지들을 넘어갈 수 있게 함 -->
+        <nav class="nav-bar">
+            <a href="index.html">Home</a>
+            <a href="club_intro.html">Clubs</a>
+            <a href="guide.html">About</a>
+        </nav>
+    </header>
 
-  const data = {
-    use: {
-      title: "웹사이트 이용 안내",
-      text: `<p>HanClub은 동아리 소개, 모집 공고, 활동 공유 등 다양한 기능을 제공하는 동아리 통합 플랫폼입니다.</p>
+    <!-- css 적용 -->
+    <main class="main-content">
+
+        <div class="About-HanClub">
+            <h1>About HanClub</h1>
+        </div>
+
+        <!-- 전체로 펼치기 위한 flex 태그 적용 -->
+        <div class="content-wrapper">
+            <!-- 사이드바 css 적용하기 -->
+            <aside class="sidebar">
+                <!-- 누르면 이동할 수 있게  -->
+                <ul>
+                    <!-- 자바 스크립트를 사용해서 각 li 태그 클릭시에
+                    선택한 목록에 볼드체, 검은색 적용하고
+                    각 text 파일로 변경 -->
+                    <li class="active" data-target="use">웹사이트 이용 안내</li>
+                    <li data-target="privacy">개인정보처리방침</li>
+                    <li data-target="copyright">저작권 안내</li>
+                    <li data-target="purpose">사이트 개발 목적</li>
+                </ul>
+            </aside>
+            <!-- .about-content css 적용 -->
+            <section class="about-content" id="contentArea">
+                <!-- 웹사이트 설명  -->
+                <h2>웹사이트 이용 안내</h2>
+                <p>HanClub은 한동대학교 재학생들이 동아리 정보를 쉽고 빠르게 확인할 수 있도록 제작된 플랫폼입니다.</p>
+                <p>좌측의 동아리 분과 메뉴를 통해 원하는 동아리 정보를 탐색하고, 게시글을 열람할 수 있습니다.</p>
+                <p>홈페이지 메인 구성에는 각 동아리의 리크루팅 시기와 가입 방식이 업데이트 되어 새로운 정보를 확인할 수 있습니다.
+                <p>
+            </section>
+        </div>
+    </main>
+
+
+
+    <!-- 외부 css 파일에서 적용 -->
+    <footer class="footer">
+        <p>© 2025 HanClub. All rights reserved.</p>
+    </footer>
+
+
+
+
+
+
+
+    <!-- 5학년 누나의 은총이 있을지어다 -->
+
+    <!-- 탭 동작 + 로그인 상태 적용 -->
+    <script>
+        // 로그인 상태 처리
+        const loginUser = JSON.parse(localStorage.getItem("loginUser"));
+        const loginLink = document.getElementById("loginLink");
+
+        if (loginUser) {
+            loginLink.textContent = "MYPAGE";
+            loginLink.href = "mypage.html";
+        } else {
+            loginLink.textContent = "LOGIN";
+            loginLink.href = "login.html";
+        }
+
+
+
+
+        // 탭 클릭 시 내용 변경
+        const tabs = document.querySelectorAll(".sidebar li");
+        const content = document.getElementById("contentArea");
+
+        const data = {
+            use: {
+                title: "웹사이트 이용 안내",
+                text: `<p>HanClub은 동아리 소개, 모집 공고, 활동 공유 등 다양한 기능을 제공하는 동아리 통합 플랫폼입니다.</p>
              <p>사용자는 로그인 후 글 작성 및 소속 동아리 게시글 열람이 가능합니다.</p>
+             <
              <img src='../assets/images/about_guide_sample.png' alt='안내 이미지' />`
-    },
-    privacy: {
-      title: "개인정보처리방침",
-      text: `<p>HanClub은 회원가입 시 수집한 개인정보(이름, 이메일 등)를 회원 식별과 게시글 작성 기능에만 사용합니다.</p>
-             <p>사용자 동의 없이 제3자에게 정보를 제공하지 않으며, 보안성 있는 방식으로 안전하게 저장합니다.</p>`
-    },
-    copyright: {
-      title: "저작권 안내",
-      text: `<p>HanClub에 게시된 모든 콘텐츠(글, 이미지 등)는 작성자에게 저작권이 있습니다.</p>
-             <p>무단 복제 및 재배포를 금하며, 외부 사용 시 출처를 반드시 밝혀야 합니다.</p>`
-    },
-    purpose: {
-      title: "사이트 개발 목적",
-      text: `<p>HanClub은 동아리 정보 접근성을 높이고 소속감을 증진시키기 위한 학생 주도 프로젝트입니다.</p>
+            },
+            privacy: {
+                title: "개인정보처리방침",
+                text: `<p>① 조달청에서 처리하는 개인정보는 수집·이용 목적으로 명시한 범위 내에서 처리하며, 개인정보보호법 및 관련법령에서 정하는 보유기간을 준용하여 이행하고 있습니다.</p>
+<p>② 『개인정보보호법』제32조에 따라 조달청에서 등록 · 공개하는 개인정보의 처리 및 보유기간은 본 방침 제1조 제2항의 ‘개인정보파일 현황’에서 조회하실 수 있습니다.</p>
+
+<br>
+① 한클럽은 원칙적으로『개인정보보호법』제17조에 따라 정보주체의 개인정보를 수집·이용 목적으로 명시한 범위 내에서 처리하며, 다음과 같이 동법 제18조에 해당하는 경우에만 개인정보를 제3자에게 제공합니다.(제4호부터 제8호까지는 공공기관의 경우로 한정합니다.)
+<li>01. 정보주체로부터 별도의 동의를 받은 경우</li>
+<li>02. 다른 법률에 특별한 규정이 있는 경우</li>
+<li>03. 명백히 정보주체 또는 제3자의 급박한 생명, 신체, 재산의 이익을 위하여 필요하다고 인정되는 경우</li>
+<li>04. 개인정보를 목적 외의 용도로 이용하거나 이를 제3자에게 제공하지 아니하면 다른 법률에서 정하는 소관 업무를 수행할 수 없는 경우로서 보호위원회의 심의ㆍ의결을 거친 경우</li>
+<li>05. 조약, 그 밖의 국제협정의 이행을 위하여 외국정부 또는 국제기구에 제공하기 위하여 필요한 경우</li>
+<li>06. 범죄의 수사와 공소의 제기 및 유지를 위하여 필요한 경우</li>
+<li>07. 법원의 재판업무 수행을 위하여 필요한 경우</li>`
+
+
+            },
+            copyright: {
+                title: "저작권 안내",
+                text: `<p>HanClub에 게시된 모든 콘텐츠(글, 이미지 등)는 작성자에게 저작권이 있습니다.</p>
+             <p>무단 복제 및 재배포를 금하며, 외부 사용 시 출처를 반드시 밝혀야 합니다.</p>
+             
+             
+             <p>저작권법 제24조의2(공공저작물의 자유이용)에 따라 한클럽 홈페이지에서 제공하는 자료 중에서 조달청이 저작재산권의 전부를 보유한 저작물의 경우에는 별도의 이용허락 없이 자유이용이 가능합니다.
+
+단, 자유이용이 가능한 자료는 “공공저작물 자유이용허락 표시 기준(공공누리,KOGL) 제1유형”을 부착하여 개방하고 있으므로, 공공누리 표시가 부착된 저작물은 각 저작물의 표시 기준을 확인한 이후에 자유 이용하시기 바랍니다.
+자유이용의 경우에는 반드시 저작물의 출처를 구체적으로 표시하여야 합니다.
+
+공용 자료들이 아닌 자료들을 사용하고자 할 경우에는 한클럽 홈페이지 담당자와 사전에 협의한 이후에 이용하여 주시기 바랍니다.</p>`
+            },
+            purpose: {
+                title: "사이트 개발 목적",
+                text: `<p>HanClub은 동아리 정보 접근성을 높이고 소속감을 증진시키기 위한 학생 주도 프로젝트입니다.</p>
              <p>효율적인 소통과 투명한 정보 공유 문화를 만드는 것을 목표로 합니다.</p>`
-    }
-  };
+            }
+        };
 
-  tabs.forEach(tab => {
-    tab.addEventListener("click", () => {
-      tabs.forEach(t => t.classList.remove("active"));
-      tab.classList.add("active");
+        tabs.forEach(tab => {
+            tab.addEventListener("click", () => {
+                tabs.forEach(t => t.classList.remove("active"));
+                tab.classList.add("active");
 
-      const key = tab.dataset.target;
-      const { title, text } = data[key];
+                const key = tab.dataset.target;
+                const { title, text } = data[key];
 
-      content.innerHTML = `<h2>${title}</h2>${text}`;
-    });
-  });
-</script>
+                content.innerHTML = `<h2>${title}</h2>${text}`;
+            });
+        });
+    </script>
 </body>
+
 </html>
