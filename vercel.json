@@ -1,14 +1,13 @@
 {
-    "rewrites": [
-      { "source": "/", "destination": "/pages/homepage.html" },
-      { "source": "/homepage.html", "destination": "/pages/homepage.html" },
-      { "source": "/event.html", "destination": "/pages/event.html" },
-      { "source": "/tournaments.html", "destination": "/pages/tournaments.html" },
-      { "source": "/media.html", "destination": "/pages/media.html" },
-      { "source": "/news.html", "destination": "/pages/news.html" },
-      { "source": "/contacts.html", "destination": "/pages/contacts.html" },
-      { "source": "/login.html", "destination": "/pages/login.html" },
-      { "source": "/signup.html", "destination": "/pages/signup.html" }
-    ]
-  }
-  
+  "rewrites": [
+    { "source": "/", "destination": "/pages/index.html" },
+    { "source": "/guide.html", "destination": "/pages/guide.html" },
+    { "source": "/club_intro.html", "destination": "/pages/club_intro.html" },
+    { "source": "/login.html", "destination": "/pages/login.html" },
+    { "source": "/mypage.html", "destination": "/pages/mypage.html" },
+    { "source": "/write.html", "destination": "/pages/write.html" },
+    { "source": "/signup.html", "destination": "/pages/signup.html" },
+    { "source": "/chat_view.html", "destination": "/pages/chat_view.html" },
+    { "source": "/club_chat.html", "destination": "/pages/club_chat.html" }
+  ]
+}
