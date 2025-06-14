@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HanClub - 한동대학교 동아리 플랫폼</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+  <style>
+    .notice-board {
+      background: #fff;
+      padding: 2rem 1rem;
+      font-family: 'Pretendard', sans-serif;
+    }
+
+    .notice {
+      display: flex;
+      max-width: 1400px;
+      margin: 0 auto;
+      gap: 3rem;
+    }
+
+    .notice-column {
+      flex: 1;
+      background: white;
+      padding: 1.5rem 2rem;
+      border-radius: 8px;
+    }
+
+    .notice-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #1D1D36;
+      padding-bottom: 0.5rem;
+    }
+
+    .notice-header h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .notice-header a {
+      font-size: 0.9rem;
+      color: #777;
+      text-decoration: none;
+    }
+
+    .notice-column ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .notice-column li {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.95rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .notice-column li:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+<!-- HanClub 헤더 -->
+<header class="main-header">
+  <div class="header-top container">
+    <div class="search-box">
+      <img src="../assets/images/search.svg" alt="검색" class="icon" />
+      <input type="text" placeholder="Search..." />
+    </div>
+    <div class="logo-box">
+      <img src="../assets/images/hanclub.svg" alt="HanClub Logo" />
+    </div>
+    <a href="login.html" class="login-link">LOGIN</a>
+  </div>
+  <nav class="nav-bar">
+    <a href="index.html">Home</a>
+    <a href="club_intro.html">Clubs</a>
+    <a href="guide.html">About</a>
+  </nav>
+</header>
+
+<main>
+  <!-- 메인 배너 영역 -->
+  <section class="main-hero">
+    <div class="hero-overlay">
+      <h1>한동의 모든 동아리를 한눈에</h1>
+      <p>
+        HanClub은 한동대학교의 모든 동아리 정보를<br />
+        한곳에 모아 제공합니다. 관심 있는 동아리를 찾고,<br />
+        함께 활동해보세요.
+      </p>
+      <a href="club_intro.html" class="hero-btn">Find Your Club →</a>
+    </div>
+  </section>
+
+  <!-- 공지/홍보 섹션 -->
+  <section class="notice-board">
+    <div class="container notice">
+      <!-- 공지사항 -->
+      <div class="notice-column">
+        <div class="notice-header">
+          <h2>공지사항 - About</h2>
+          <a href="guide.html">read more</a>
+        </div>
+        <ul>
+          <li><span>개인정보 처리 방침</span><span>2025-01-01</span></li>
+          <li><span>사이트 사용 안내</span><span>2025-01-01</span></li>
+          <li><span>사이트 사용 안내</span><span>2025-01-01</span></li>
+          <li><span>사이트 사용 안내</span><span>2025-01-01</span></li>
+          <li><span>사이트 사용 안내</span><span>2025-01-01</span></li>
+        </ul>
+      </div>
+
+      <!-- 동아리 홍보 -->
+      <div class="notice-column">
+        <div class="notice-header">
+          <h2>동아리 홍보 - Club Highlights</h2>
+          <a href="club_intro.html">read more</a>
+        </div>
+        <ul>
+          <li><span>ZIZZY 리크루팅 안내</span><span>2025-01-01</span></li>
+          <li><span>CRA 리크루팅 안내</span><span>2025-01-01</span></li>
+          <li><span>ZIZZY 스트릿 공연 안내</span><span>2025-01-01</span></li>
+          <li><span>CRA 리크루팅 안내</span><span>2025-01-01</span></li>
+          <li><span>ZIZZY 스트릿 공연 안내</span><span>2025-01-01</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>© 2025 HanClub. All rights reserved.</p>
+</footer>
+
+<!-- 로그인 상태에 따라 링크 변경 -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const loginLink = document.querySelector(".login-link");
+    const user = JSON.parse(localStorage.getItem("loginUser"));
+
+    if (user) {
+      loginLink.textContent = "MYPAGE";
+      loginLink.href = "mypage.html";
+    } else {
+      loginLink.textContent = "LOGIN";
+      loginLink.href = "login.html";
+    }
+  });
+</script>
+</body>
+</html>

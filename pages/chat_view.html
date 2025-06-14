@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>게시글 보기 - HanClub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+  <style>
+    main {
+      width: 100%;
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem 2.5rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      font-family: 'Pretendard', sans-serif;
+    }
+    .post-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+    .post-title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 1.2rem;
+    }
+    .post-content {
+      white-space: pre-line;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+    .btn-box {
+      margin-top: 2rem;
+      text-align: right;
+    }
+    .btn-box button {
+      background-color: #202032;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .btn-box button:hover {
+      background-color: #343456;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HanClub 헤더 -->
+<header class="main-header">
+  <div class="header-top container">
+    <div class="search-box">
+      <img src="../assets/images/search.svg" alt="검색" class="icon" />
+      <input type="text" placeholder="Search..." />
+    </div>
+    <div class="logo-box">
+      <img src="../assets/images/hanclub.svg" alt="HanClub Logo" />
+    </div>
+    <a href="mypage.html" class="login-link">MYPAGE</a>
+  </div>
+  <nav class="nav-bar">
+    <a href="index.html">Home</a>
+    <a href="club_intro.html">Clubs</a>
+    <a href="guide.html">About</a>
+  </nav>
+</header>
+
+<main>
+  <div class="post-meta">
+    <span id="post-club">📁 </span> 
+    <span id="post-author"></span>
+  </div>
+
+  <div class="post-title" id="post-title"></div>
+  <div class="post-content" id="post-content"></div>
+
+  <div class="btn-box">
+    <button onclick="location.href='club_intro.html'">목록</button>
+  </div>
+</main>
+
+<footer class="footer">
+  <p>© 2025 HanClub. All rights reserved.</p>
+</footer>
+
+<script>
+  const post = JSON.parse(localStorage.getItem("selectedPost"));
+
+  if (!post) {
+    alert("게시글 정보가 없습니다.");
+    location.href = "club_intro.html";
+  } else {
+    document.getElementById("post-title").textContent = post.title;
+    document.getElementById("post-content").textContent = post.content;
+    document.getElementById("post-author").textContent = `${post.author} | ${post.date}`;
+    document.getElementById("post-club").textContent += post.club;
+  }
+</script>
+
+</body>
+</html>

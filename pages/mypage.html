@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MYPAGE</title>
+
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+
+  <style>
+    main {
+      padding: 2rem;
+    }
+
+    .user-info h2 {
+      margin: 0 0 0.3rem;
+    }
+
+    .user-info p {
+      margin: 0.2rem 0;
+      color: #333;
+      font-size: 0.95rem;
+    }
+
+    .tab-menu {
+      display: flex;
+      margin: 2rem 0 1rem;
+      border-bottom: 2px solid #222;
+    }
+
+    .tab-menu button {
+      background: none;
+      border: none;
+      font-size: 1rem;
+      padding: 0.7rem 1.2rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #555;
+    }
+
+    .tab-menu button.active {
+      font-weight: bold;
+      border-bottom: 2px solid #1d1d3f;
+      color: #1d1d3f;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      padding: 0.8rem;
+      border-bottom: 1px solid #ccc;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+
+    .write-btn {
+      float: right;
+      margin-top: 1.5rem;
+      padding: 0.6rem 1.2rem;
+      background: #1d1d3f;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .logout-fixed {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: #1d1d3f;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      font-size: 0.9rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<header class="main-header">
+  <div class="header-top container">
+    <div class="search-box">
+      <img src="../assets/images/search.svg" alt="검색" class="icon" />
+      <input type="text" placeholder="Search..." />
+    </div>
+
+    <div class="logo-box">
+      <img src="../assets/images/hanclub.svg" alt="HanClub Logo" />
+    </div>
+
+    <a href="mypage.html" class="login-link">MYPAGE</a>
+  </div>
+
+  <nav class="nav-bar">
+    <a href="index.html">Home</a>
+    <a href="club_intro.html">Clubs</a>
+    <a href="guide.html">About</a>
+  </nav>
+</header>
+
+<main>
+  <section class="user-info" id="user-info">
+    <!-- 사용자 정보 동적 삽입 -->
+  </section>
+
+  <div class="tab-menu">
+    <button class="tab-btn active" data-tab="clubs">나의 동아리</button>
+    <button class="tab-btn" data-tab="posts">작성 글</button>
+  </div>
+
+  <div id="clubs" class="tab-content active">
+    <table>
+      <thead>
+        <tr><th>동아리명</th></tr>
+      </thead>
+      <tbody id="club-list">
+        <!-- 동아리 목록 삽입 -->
+      </tbody>
+    </table>
+    <button class="write-btn">글 작성</button>
+  </div>
+
+  <div id="posts" class="tab-content">
+    <table>
+      <thead>
+        <tr>
+          <th>동아리명</th>
+          <th>제목</th>
+          <th>작성자</th>
+          <th>작성일</th>
+        </tr>
+      </thead>
+      <tbody id="post-list">
+        <!-- 작성 글 삽입 -->
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<footer class="footer">
+  <p>© 2025 HanClub. All rights reserved.</p>
+</footer>
+
+<!-- 로그아웃 버튼 -->
+<button class="logout-fixed" onclick="handleLogout()">로그아웃</button>
+
+<!-- 스크립트 로딩 -->
+<script src="../assets/js/data.js"></script>
+<script>
+  const user = getLoginUser();
+
+  if (!user) {
+    alert("로그인이 필요합니다.");
+    location.href = "login.html";
+  }
+
+  // 사용자 정보 표시
+  const userInfo = document.getElementById('user-info');
+  userInfo.innerHTML = `
+    <h2>${user.name}</h2>
+    <p>${user.email}</p>
+    <p>${user.department || '소속 정보 없음'}</p>
+  `;
+
+  // 동아리 목록 출력
+  const clubList = document.getElementById('club-list');
+  clubList.innerHTML = "";
+  user.clubs.forEach(club => {
+    clubList.innerHTML += `<tr><td>${club}</td></tr>`;
+  });
+
+  // 작성 글 출력
+  const postList = document.getElementById('post-list');
+  postList.innerHTML = "";
+  user.posts.forEach(post => {
+    postList.innerHTML += `
+      <tr>
+        <td>${post.club}</td>
+        <td>${post.title}</td>
+        <td>${post.author}</td>
+        <td>${post.date}</td>
+      </tr>
+    `;
+  });
+
+  // 로그아웃 처리
+  function handleLogout() {
+    logout();
+    location.href = "index.html";
+  }
+
+  // 탭 전환
+  const buttons = document.querySelectorAll('.tab-btn');
+  const contents = document.querySelectorAll('.tab-content');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const targetId = button.dataset.tab;
+
+      buttons.forEach(btn => btn.classList.remove('active'));
+      contents.forEach(tab => tab.classList.remove('active'));
+
+      button.classList.add('active');
+      document.getElementById(targetId).classList.add('active');
+    });
+  });
+
+  // 글 작성 버튼 이동
+  document.querySelector(".write-btn").addEventListener("click", () => {
+    location.href = "write.html";
+  });
+</script>
+
+</body>
+</html>

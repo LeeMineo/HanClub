@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HanClub - About</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+  <style>
+    .About-HanClub {
+      background-color: #F4F4F5;
+      padding: 2rem 0;
+    }
+
+    .About-HanClub h1 {
+      text-align: center;
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 500;
+    }
+
+    .content-wrapper {
+      display: flex;
+      padding: 2rem;
+    }
+
+    .sidebar {
+      width: 220px;
+      padding-right: 1.5rem;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      border-top: 2px solid #1d1d3f;
+      border-bottom: 2px solid #1d1d3f;
+    }
+
+    .sidebar li {
+      padding: 0.6rem 0;
+      cursor: pointer;
+    }
+
+    .sidebar li:hover,
+    .sidebar li.active {
+      color: #1d1d3f;
+      font-weight: bold;
+    }
+
+    .about-content {
+      flex: 1;
+      padding: 2rem;
+      border: 1px solid #aaa;
+      background: white;
+    }
+
+    .about-content h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .about-content p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .about-content img {
+      max-width: 100%;
+      margin-top: 1rem;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+<header class="main-header">
+  <div class="header-top container">
+    <div class="search-box">
+      <img src="../assets/images/search.svg" alt="검색" class="icon" />
+      <input type="text" placeholder="Search..." />
+    </div>
+    <div class="logo-box">
+      <img src="../assets/images/hanclub.svg" alt="HanClub Logo" />
+    </div>
+    <a href="login.html" class="login-link" id="loginLink">LOGIN</a>
+  </div>
+  <nav class="nav-bar">
+    <a href="index.html">Home</a>
+    <a href="club_intro.html">Clubs</a>
+    <a href="guide.html">About</a>
+  </nav>
+</header>
+
+<main class="main-content">
+  <div class="About-HanClub"> 
+    <h1>About HanClub</h1>
+  </div>
+  <div class="content-wrapper">
+    <aside class="sidebar">
+      <ul>
+        <li class="active" data-target="use">웹사이트 이용 안내</li>
+        <li data-target="privacy">개인정보처리방침</li>
+        <li data-target="copyright">저작권 안내</li>
+        <li data-target="purpose">사이트 개발 목적</li>
+      </ul>
+    </aside>
+    <section class="about-content" id="contentArea">
+      <h2>웹사이트 이용 안내</h2>
+      <p>HanClub은 한동대학교 재학생들이 동아리 정보를 쉽고 빠르게 확인할 수 있도록 제작된 플랫폼입니다.</p>
+      <p>좌측의 동아리 분과 메뉴를 통해 원하는 동아리 정보를 탐색하고, 게시글을 열람할 수 있습니다.</p>
+    </section>
+  </div>
+</main>
+
+<footer class="footer">
+  <p>© 2025 HanClub. All rights reserved.</p>
+</footer>
+
+<!-- 탭 동작 + 로그인 상태 적용 -->
+<script>
+  // 로그인 상태 처리
+  const loginUser = JSON.parse(localStorage.getItem("loginUser"));
+  const loginLink = document.getElementById("loginLink");
+
+  if (loginUser) {
+    loginLink.textContent = "MYPAGE";
+    loginLink.href = "mypage.html";
+  } else {
+    loginLink.textContent = "LOGIN";
+    loginLink.href = "login.html";
+  }
+
+  // 탭 클릭 시 내용 변경
+  const tabs = document.querySelectorAll(".sidebar li");
+  const content = document.getElementById("contentArea");
+
+  const data = {
+    use: {
+      title: "웹사이트 이용 안내",
+      text: `<p>HanClub은 동아리 소개, 모집 공고, 활동 공유 등 다양한 기능을 제공하는 동아리 통합 플랫폼입니다.</p>
+             <p>사용자는 로그인 후 글 작성 및 소속 동아리 게시글 열람이 가능합니다.</p>
+             <img src='../assets/images/about_guide_sample.png' alt='안내 이미지' />`
+    },
+    privacy: {
+      title: "개인정보처리방침",
+      text: `<p>HanClub은 회원가입 시 수집한 개인정보(이름, 이메일 등)를 회원 식별과 게시글 작성 기능에만 사용합니다.</p>
+             <p>사용자 동의 없이 제3자에게 정보를 제공하지 않으며, 보안성 있는 방식으로 안전하게 저장합니다.</p>`
+    },
+    copyright: {
+      title: "저작권 안내",
+      text: `<p>HanClub에 게시된 모든 콘텐츠(글, 이미지 등)는 작성자에게 저작권이 있습니다.</p>
+             <p>무단 복제 및 재배포를 금하며, 외부 사용 시 출처를 반드시 밝혀야 합니다.</p>`
+    },
+    purpose: {
+      title: "사이트 개발 목적",
+      text: `<p>HanClub은 동아리 정보 접근성을 높이고 소속감을 증진시키기 위한 학생 주도 프로젝트입니다.</p>
+             <p>효율적인 소통과 투명한 정보 공유 문화를 만드는 것을 목표로 합니다.</p>`
+    }
+  };
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+
+      const key = tab.dataset.target;
+      const { title, text } = data[key];
+
+      content.innerHTML = `<h2>${title}</h2>${text}`;
+    });
+  });
+</script>
+</body>
+</html>

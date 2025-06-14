@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>club_intro : 동아리 페이지</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+  <style>
+    .content-wrapper {
+      display: flex;
+      padding: 2rem;
+    }
+    .sidebar {
+      width: 220px;
+      padding-right: 1rem;
+    }
+    .sidebar-header {
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 0.8rem 0 0.5rem;
+      border-top: 3px solid #1d1d3f;
+      margin-bottom: 0.5rem;
+    }
+    .department-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      border-top: 2px solid #1d1d3f;
+      border-bottom: 2px solid #1d1d3f;
+      padding-top: 0.5rem;
+    }
+    .dept-toggle span {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      padding: 0.5rem 0;
+      font-weight: bold;
+    }
+    .dept-toggle span::after {
+      content: "\25B6";
+      font-size: 0.8rem;
+      display: inline-block;
+      transform: rotate(0deg);
+      transition: transform 0.3s ease;
+      margin-left: 0.5rem;
+    }
+    .dept-toggle.open span::after {
+      transform: rotate(90deg);
+    }
+    .club-list {
+      display: none;
+      padding-left: 1rem;
+    }
+    .club-list.active {
+      display: block;
+    }
+    .club-list li {
+      cursor: pointer;
+      padding: 0.3rem 0;
+      font-size: 0.9rem;
+    }
+    .write-btn {
+      margin-top: 2rem;
+      padding: 0.6rem;
+      background: #1d1d3f;
+      color: white;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+    .post-table {
+      flex: 1;
+      padding-left: 2rem;
+    }
+    .post-table table {
+      width: 100%;
+      border-collapse: collapse;
+      border-top: 3px solid #1d1d3f;
+    }
+    .post-table th, .post-table td {
+      padding: 0.8rem;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    a:visited {
+      color: inherit;
+    }
+  </style>
+</head>
+<body>
+<!-- HanClub 헤더 -->
+<header class="main-header">
+    <!-- 상단: 검색창, 로고, 로그인 -->
+  <div class="header-top container">
+    <!-- 검색창 -->
+    <div class="search-box">
+      <img src="../assets/images/search.svg" alt="검색" class="icon" />
+      <input type="text" placeholder="Search..." />
+    </div>
+
+    <!-- 로고 -->
+    <div class="logo-box">
+      <img src="../assets/images/hanclub.svg" alt="HanClub Logo" />
+    </div>
+
+    <!-- 로그인 버튼 -->
+    <a href="login.html" class="login-link" id="loginLink">LOGIN</a>
+  </div>
+
+  <!-- 하단 네비게이션 -->
+  <nav class="nav-bar">
+    <a href="index.html">Home</a>
+    <a href="club_intro.html">Clubs</a>
+    <a href="guide.html">About</a>
+  </nav>
+  
+</header>
+
+<main class="main-content">
+  <div class="content-wrapper">
+    <aside class="sidebar">
+      <div class="sidebar-header">전체 게시글</div>
+      <ul id="departmentList" class="department-list"></ul>
+      <button class="write-btn" id="writeBtn" style="display: none;">글 작성</button>
+    </aside>
+    <section class="post-table">
+      <table>
+        <thead>
+          <tr>
+            <th>동아리명</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+          </tr>
+        </thead>
+        <tbody id="postList"></tbody>
+      </table>
+    </section>
+  </div>
+</main>
+
+<footer class="footer">
+  <p>© 2025 HanClub. All rights reserved.</p>
+</footer>
+
+<script src="../assets/js/data.js"></script>
+<script>
+  const departmentList = document.getElementById("departmentList");
+  const postList = document.getElementById("postList");
+  const writeBtn = document.getElementById("writeBtn");
+  const loginLink = document.getElementById("loginLink");
+
+  const loginUser = JSON.parse(localStorage.getItem("loginUser"));
+  if (loginUser) {
+    writeBtn.style.display = "block";
+    loginLink.href = "mypage.html";
+    loginLink.textContent = "MYPAGE";
+  }
+
+  for (const dep in departments) {
+    const li = document.createElement("li");
+    li.className = "dept-toggle";
+    li.innerHTML = `<span>${dep}</span><ul class="club-list"></ul>`;
+    const clubUl = li.querySelector(".club-list");
+    departments[dep].forEach(club => {
+      const clubLi = document.createElement("li");
+      clubLi.textContent = club;
+      clubLi.onclick = () => filterPostsByClub(club);
+      clubUl.appendChild(clubLi);
+    });
+    li.querySelector("span").onclick = () => {
+      clubUl.classList.toggle("active");
+      li.classList.toggle("open");
+    };
+    departmentList.appendChild(li);
+  }
+
+  function renderPosts(postArray) {
+    postList.innerHTML = "";
+    postArray.forEach(post => {
+      const isLocked = post.type === "post";
+      const lockIcon = isLocked ? "🔒 " : "";
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${post.club}</td>
+        <td><a href="#" class="post-link" data-title="${post.title}">${lockIcon}${post.title}</a></td>
+        <td>${post.author}</td>
+        <td>${post.date}</td>
+      `;
+      postList.appendChild(tr);
+    });
+
+    document.querySelectorAll(".post-link").forEach(link => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const title = e.target.dataset.title;
+        const selected = posts.find(p => p.title === title);
+        if (!selected) return;
+
+        if (selected.type === "notice") {
+          localStorage.setItem("selectedPost", JSON.stringify(selected));
+          location.href = "chat_view.html";
+        } else {
+          const user = JSON.parse(localStorage.getItem("loginUser"));
+          if (!user) {
+            alert("로그인 후 확인 가능한 게시글입니다.");
+            return;
+          }
+          const hasAccess = user.clubs.includes(selected.club);
+          if (!hasAccess) {
+            alert("해당 동아리 소속만 열람 가능한 게시글입니다.");
+            return;
+          }
+          localStorage.setItem("selectedPost", JSON.stringify(selected));
+          location.href = "chat_view.html";
+        }
+      });
+    });
+  }
+
+  function filterPostsByClub(clubName) {
+    const filtered = posts.filter(post => post.club.includes(clubName));
+    renderPosts(filtered);
+  }
+
+  renderPosts(posts);
+  writeBtn.addEventListener("click", () => {
+    location.href = "write.html";
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HanClub - 게시글 작성</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+  <style>
+    .write-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    .write-container h2 {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 0.5rem;
+    }
+    label {
+      display: block;
+      margin-top: 1.2rem;
+      font-weight: bold;
+    }
+    input[type="text"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      resize: vertical;
+    }
+    textarea {
+      min-height: 200px;
+    }
+    .btn-box {
+      text-align: right;
+      margin-top: 2rem;
+    }
+    .btn-box button {
+      background-color: #202032;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .btn-box button:hover {
+      background-color: #343456;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HanClub 헤더 -->
+<header class="main-header">
+  <div class="header-top container">
+    <div class="search-box">
+      <img src="../assets/images/search.svg" alt="검색" class="icon" />
+      <input type="text" placeholder="Search..." />
+    </div>
+    <div class="logo-box">
+      <img src="../assets/images/hanclub.svg" alt="HanClub Logo" />
+    </div>
+    <a href="login.html" class="login-link" id="loginLink">LOGIN</a>
+  </div>
+
+  <nav class="nav-bar">
+    <a href="index.html">Home</a>
+    <a href="club_intro.html">Clubs</a>
+    <a href="guide.html">About</a>
+  </nav>
+</header>
+
+<main>
+  <div class="write-container">
+    <h2>📌 게시글 작성</h2>
+    <form id="writeForm">
+      <!-- 동아리 선택 -->
+      <label for="club">소속 동아리</label>
+      <select id="club" name="club" required></select>
+
+      <!-- 게시글 종류 선택 -->
+      <label for="type">게시글 유형</label>
+      <select id="type" name="type">
+        <option value="notice">공지사항</option>
+        <option value="post">일반 게시물</option>
+      </select>
+
+      <!-- 제목 입력 -->
+      <label for="title">제목</label>
+      <input type="text" id="title" name="title" required />
+
+      <!-- 내용 입력 -->
+      <label for="content">내용</label>
+      <textarea id="content" name="content" required></textarea>
+
+      <div class="btn-box">
+        <button type="submit">작성 완료</button>
+      </div>
+    </form>
+  </div>
+</main>
+
+<footer class="footer">
+  <p>© 2025 HanClub. All rights reserved.</p>
+</footer>
+
+<!-- 로그인 유저 정보 및 동아리 반영 스크립트 -->
+<script src="../assets/js/data.js"></script>
+<script>
+  const loginUser = JSON.parse(localStorage.getItem("loginUser"));
+  const loginLink = document.getElementById("loginLink");
+
+  // 로그인 여부 확인
+  if (!loginUser) {
+    alert("로그인이 필요한 페이지입니다.");
+    location.href = "login.html";
+  } else {
+    loginLink.textContent = "MYPAGE";
+    loginLink.href = "mypage.html";
+  }
+
+  // 동아리 select 옵션 생성
+  const clubSelect = document.getElementById("club");
+  loginUser.clubs.forEach(club => {
+    const option = document.createElement("option");
+    option.value = club;
+    option.textContent = club;
+    clubSelect.appendChild(option);
+  });
+
+  // 폼 제출 처리
+  document.getElementById("writeForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const post = {
+      club: clubSelect.value,
+      title: document.getElementById("title").value,
+      content: document.getElementById("content").value,
+      type: document.getElementById("type").value,
+      author: loginUser.name,
+      date: new Date().toISOString().split("T")[0].replace(/-/g, ".")
+    };
+
+    // 임시 출력 (실제 저장은 서버 또는 localStorage에서 구현 가능)
+    console.log("작성된 게시글:", post);
+    alert("게시글이 작성되었습니다!");
+    location.href = "club_intro.html";
+  });
+</script>
+
+</body>
+</html>
